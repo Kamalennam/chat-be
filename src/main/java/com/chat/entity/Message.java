@@ -15,7 +15,10 @@ public class Message {
     private String senderId;
     private String receiverId;
     private String text;
+//    @Column(name = "media_url")
+    private String mediaUrl;
     private Instant timestamp;
+	
 	public String getId() {
 		return id;
 	}
@@ -39,6 +42,12 @@ public class Message {
 	}
 	public void setText(String text) {
 		this.text = text;
+	}
+	public String getMediaUrl() {
+		return mediaUrl;
+	}
+	public void setMediaUrl(String mediaUrl) {
+		this.mediaUrl = mediaUrl;
 	}
 	public Instant getTimestamp() {
 		return timestamp;
