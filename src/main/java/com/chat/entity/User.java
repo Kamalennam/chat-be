@@ -17,7 +17,14 @@ public class User {
 
     private String mobileNumber;
     private String otp;
+    private String name;
 
+    @Field("is_online")
+    private boolean isOnline;
+
+    @Field("last_seen")
+    private Instant lastSeen;
+    
     @CreatedDate
     @Field("created_at")
     private Instant createdAt;
@@ -28,9 +35,28 @@ public class User {
 
     public User() {}
 
-    public User(String mobileNumber, String otp) {
+    public boolean isOnline() {
+		return isOnline;
+	}
+
+	public void setOnline(boolean isOnline) {
+		this.isOnline = isOnline;
+	}
+
+	public Instant getLastSeen() {
+		return lastSeen;
+	}
+
+	public void setLastSeen(Instant lastSeen) {
+		this.lastSeen = lastSeen;
+	}
+
+	public User(String mobileNumber, String otp) {
+		this.name=name;
         this.mobileNumber = mobileNumber;
         this.otp = otp;
+        this.isOnline= false;
+        this.lastSeen=Instant.now();
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }
@@ -76,4 +102,14 @@ public class User {
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+    
+    
 }

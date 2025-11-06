@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.chat.models.GenericResponse;
 import com.chat.models.MessageRequestDto;
 import com.chat.models.MessageSummaryDto;
+import com.chat.models.UserDto;
 import com.chat.services.MessageService;
 
 @RestController
@@ -53,4 +54,12 @@ public class MessageController {
 	        return ResponseEntity.ok(messages);
 	    }
 	    
+	    @GetMapping("/contact")
+	    public ResponseEntity<List<UserDto>> getContactByNameOrMobile(
+	            @RequestParam String query) {
+
+	        List<UserDto> users = messageService.getContactsByNameOrMobile(query);
+	        return ResponseEntity.ok(users);
+	    }
+
 }

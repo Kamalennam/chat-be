@@ -5,6 +5,7 @@ import com.chat.entity.Message;
 import com.chat.entity.User;
 import com.chat.models.MessageRequestDto;
 import com.chat.models.MessageSummaryDto;
+import com.chat.models.UserDto;
 import com.chat.models.GenericResponse;
 import com.chat.repositories.ChatRepository;
 import com.chat.repositories.MessageRepository;
@@ -153,5 +154,18 @@ public class MessageService {
                 .toList();
     }
 
+    
+    public List<UserDto> getContactsByNameOrMobile(String nameOrMobile) {
+        Optional<User> userByMobile = userRepository.findByMobileNumber(nameOrMobile);
+        if (userByMobile.isPresent()) {
+            return List.of(new UserDto(userByMobile.get()));
+        }
+
+        List<User> usersByName = userRepository.findByNameContainingIgnoreCase(nameOrMobile);
+        return usersByName.stream()
+                .map(UserDto::new)
+                .toList();
+    }
+ 
 	
 }
